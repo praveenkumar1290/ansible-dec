@@ -1,0 +1,9 @@
+---
+- name: Debugging Variables
+  hosts: all
+  vars:
+    variable: "this is ansible class"
+  tasks:
+    - name: "test variable"
+      debug:
+        msg: "{{ variable }}"

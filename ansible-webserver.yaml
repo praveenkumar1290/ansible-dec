@@ -1,0 +1,24 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: install nginx in ubuntu
+      apt:
+        name: nginx
+        state: present
+    - name: start the serice
+      service:
+        name: nginx
+        state: started
+    - name: copy index file to nginx
+      copy:
+        src: "/root/index.html"
+        dest: "/var/www/html/index.html"
+        mode: '0755'
+      notify:
+        - restart nginx
+  handlers:
+    - name: restart nginx
+      service:
+        name: nginx
+        state: restarted

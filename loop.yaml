@@ -1,0 +1,18 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: install maven build tool
+    apt:
+      name: "{{ item }}"
+      state: absent
+    loop:
+      - maven
+      - gradle
+      - tree
+      - nginx
+      - python3-pip
+      - default-jre
+      - wget
+      - curl
+    
